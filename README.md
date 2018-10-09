@@ -2,9 +2,9 @@
 
 Jogo Campo Minado para Faculdade. Linguagem C/C++.
 
-## Getting Started
+## Files
 
-Files in [minesweeper.cpp](minesweeper.cpp).
+[minesweeper.cpp](minesweeper.cpp).
 
 ## Authors
 
