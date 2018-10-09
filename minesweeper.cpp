@@ -11,7 +11,7 @@ using namespace std;
 //CAMPO!
 #define maxLados 50 //TAMANHO MAXIMO DO CAMPO
 #define maxMinas 200 //NUMERO MAXIMO DE MINAS
-#define espacos 526 // NUMERO DE ESPACOS PARA JOGAR SEM BOMBA (25 * 25 - 99)
+//#define espacos 526 // NUMERO DE ESPACOS PARA JOGAR SEM BOMBA (25 * 25 - 99)
 
 //VARS
 int lado;  //TAMANHO DO CAMPO
@@ -22,18 +22,18 @@ int  bombas[200][1]; //200 linhas, 2 colunas
 
 //FUNCOES
 
-bool posValida();
-bool posBomba();
-bool gameOver(int lin, int col);
 void campoPrint();
 void criarCampo();
 void colocarBombas();
 void hack();
 void controle();
 void dificuldade();
-int jogar(int lin, int col);
+void jogar();
+void revelar(int lin, int col);
+bool posValida();
+bool posBomba();
+bool gameOver(int lin, int col);
 int contarBombas(int lin, int col);
-int revelar(int lin, int col);
 
 int main(){
     controle();
@@ -98,10 +98,10 @@ void colocarBombas(){
     int i, j;
     int x, y;
 
-    //Bombas[][] È uma matriz que contÈm as coordenadas de todas as bombas do campo;
-    //S„o duas colunas, e quantidade de linhas = quantidade de bombas;
+    //Bombas[][] √© uma matriz que cont√©m as coordenadas de todas as bombas do campo;
+    //S√£o duas colunas, e quantidade de linhas = quantidade de bombas;
 
-    //Pode ser que n„o fique exatamente a quantidade de bombas definidade, pois pode cair na mesma posicao
+    //Pode ser que n√£o fique exatamente a quantidade de bombas definidade, pois pode cair na mesma posicao
 
     srand(time(NULL));
     for (i=0; i<qt_minas; i++){
@@ -178,10 +178,11 @@ void controle(){
     dificuldade();
     criarCampo();
     colocarBombas();
-    jogar(0, 0);
+    jogar();
 }
 
-int jogar(int lin, int col){
+void jogar(){
+    int lin, col;
     int i, j;
     char cont;
     bool isOver = false;
@@ -200,8 +201,10 @@ int jogar(int lin, int col){
         if (isOver == true){
             printf("\nGame Over!\n");
             hack();
-            return 1;
+            return;
         }
+
+        //revelar(lin, col);
 
         cont = '0';
 
@@ -242,15 +245,16 @@ int jogar(int lin, int col){
             revelar(lin-1,col+1);
         }
     }
-    return 0;
+    return;
 }
 
-int revelar (int lin, int col){
+void revelar (int lin, int col){
     char cont = '0';
+    int teste;
 
     if ((posValida(lin+1, col) == true) && (posBomba(lin+1, col) == true)){
         cont++;
-    }
+    } 
     if ((posValida(lin, col+1) == true) && (posBomba(lin, col+1) == true)){
         cont++;
     }
@@ -284,7 +288,7 @@ int revelar (int lin, int col){
         revelar(lin+1, col-1);
         revelar(lin-1, col+1); */
     }
-    return 0;
+    return;
 }
 
 bool gameOver(int lin, int col){
