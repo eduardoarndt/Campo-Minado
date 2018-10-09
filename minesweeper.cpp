@@ -24,15 +24,16 @@ int  bombas[200][1]; //200 linhas, 2 colunas
 
 bool posValida();
 bool posBomba();
+bool gameOver(int lin, int col);
 void campoPrint();
 void criarCampo();
 void colocarBombas();
 void hack();
 void controle();
 void dificuldade();
-bool gameOver(int lin, int col);
-int jogar();
+int jogar(int lin, int col);
 int contarBombas(int lin, int col);
+int revelar(int lin, int col);
 
 int main(){
     controle();
@@ -97,10 +98,10 @@ void colocarBombas(){
     int i, j;
     int x, y;
 
-    //Bombas[][] √© uma matriz que cont√©m as coordenadas de todas as bombas do campo;
-    //S√£o duas colunas, e quantidade de linhas = quantidade de bombas;
+    //Bombas[][] È uma matriz que contÈm as coordenadas de todas as bombas do campo;
+    //S„o duas colunas, e quantidade de linhas = quantidade de bombas;
 
-    //Pode ser que n√£o fique exatamente a quantidade de bombas definidade, pois pode cair na mesma posicao
+    //Pode ser que n„o fique exatamente a quantidade de bombas definidade, pois pode cair na mesma posicao
 
     srand(time(NULL));
     for (i=0; i<qt_minas; i++){
@@ -177,19 +178,18 @@ void controle(){
     dificuldade();
     criarCampo();
     colocarBombas();
-    jogar();
+    jogar(0, 0);
 }
 
-int jogar(){
-    int lin, col;
+int jogar(int lin, int col){
     int i, j;
     char cont;
     bool isOver = false;
 
     while (isOver == false){
 
-        campoPrint();
-        //hack();
+        //campoPrint();
+        hack();
 
         printf("\nSelecione a linha: ");
         scanf(" %d", &lin);
@@ -199,6 +199,7 @@ int jogar(){
         isOver = gameOver(lin, col);
         if (isOver == true){
             printf("\nGame Over!\n");
+            hack();
             return 1;
         }
 
@@ -229,6 +230,59 @@ int jogar(){
             cont++;
         }
         campo[lin][col] = cont;
+
+        if (cont == '0'){
+            revelar(lin+1,col+1);
+            revelar(lin-1,col-1);
+            revelar(lin+1,col);
+            revelar(lin,col+1);
+            revelar(lin-1,col);
+            revelar(lin,col-1);
+            revelar(lin+1,col-1);
+            revelar(lin-1,col+1);
+        }
+    }
+    return 0;
+}
+
+int revelar (int lin, int col){
+    char cont = '0';
+
+    if ((posValida(lin+1, col) == true) && (posBomba(lin+1, col) == true)){
+        cont++;
+    }
+    if ((posValida(lin, col+1) == true) && (posBomba(lin, col+1) == true)){
+        cont++;
+    }
+    if ((posValida(lin-1, col) == true) && (posBomba(lin-1, col) == true)){
+        cont++;
+    }
+    if ((posValida(lin, col-1) == true) && (posBomba(lin, col-1) == true)){
+        cont++;
+    }
+    if ((posValida(lin+1, col+1) == true) && (posBomba(lin+1, col+1) == true)){
+        cont++;
+    }
+    if ((posValida(lin-1, col-1) == true) && (posBomba(lin-1, col-1) == true)){
+        cont++;
+    }
+    if ((posValida(lin+1, col-1) == true) && (posBomba(lin+1, col-1) == true)){
+        cont++;
+    }
+    if ((posValida(lin-1, col+1) == true) && (posBomba(lin-1, col+1) == true)){
+        cont++;
+    }
+    campo[lin][col] = cont;
+
+    if (cont == '0'){
+        /* revelar(lin+1, col);
+        revelar(lin, col+1);
+        revelar(lin-1, col);
+        revelar(lin, col-1);
+        revelar(lin+1, col+1);
+        revelar(lin-1, col-1);
+        revelar(lin+1, col-1);
+        revelar(lin-1, col+1); */
     }
     return 0;
 }
