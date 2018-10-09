@@ -28,10 +28,11 @@ void campoPrint();
 void criarCampo();
 void colocarBombas();
 void hack();
-void iniciar();
+void controle();
 void dificuldade();
 bool gameOver(int lin, int col);
 int jogar();
+int contarBombas(int lin, int col);
 
 int main(){
     controle();
@@ -96,10 +97,10 @@ void colocarBombas(){
     int i, j;
     int x, y;
 
-    //Bombas[][] È uma matriz que contÈm as coordenadas de todas as bombas do campo;
-    //S„o duas colunas, e quantidade de linhas = quantidade de bombas;
+    //Bombas[][] √© uma matriz que cont√©m as coordenadas de todas as bombas do campo;
+    //S√£o duas colunas, e quantidade de linhas = quantidade de bombas;
 
-    //Pode ser que n„o fique exatamente a quantidade de bombas definidade, pois pode cair na mesma posicao
+    //Pode ser que n√£o fique exatamente a quantidade de bombas definidade, pois pode cair na mesma posicao
 
     srand(time(NULL));
     for (i=0; i<qt_minas; i++){
@@ -176,28 +177,60 @@ void controle(){
     dificuldade();
     criarCampo();
     colocarBombas();
-    campoPrint();
-    hack();
     jogar();
 }
 
 int jogar(){
     int lin, col;
     int i, j;
-    bool gameOver = false;
+    char cont;
+    bool isOver = false;
 
-    while (gameOver == false){
+    while (isOver == false){
+
+        campoPrint();
+        //hack();
+
         printf("\nSelecione a linha: ");
         scanf(" %d", &lin);
         printf("\nSelecione a coluna: ");
         scanf(" %d", &col);
 
-        gameOver = gameOver(lin, col);
-        if (gameOver == true){
+        isOver = gameOver(lin, col);
+        if (isOver == true){
             printf("\nGame Over!\n");
             return 1;
         }
+
+        cont = '0';
+
+        if ((posValida(lin+1, col) == true) && (posBomba(lin+1, col) == true)){
+            cont++;
+        }
+        if ((posValida(lin, col+1) == true) && (posBomba(lin, col+1) == true)){
+            cont++;
+        }
+        if ((posValida(lin-1, col) == true) && (posBomba(lin-1, col) == true)){
+            cont++;
+        }
+        if ((posValida(lin, col-1) == true) && (posBomba(lin, col-1) == true)){
+            cont++;
+        }
+        if ((posValida(lin+1, col+1) == true) && (posBomba(lin+1, col+1) == true)){
+            cont++;
+        }
+        if ((posValida(lin-1, col-1) == true) && (posBomba(lin-1, col-1) == true)){
+            cont++;
+        }
+        if ((posValida(lin+1, col-1) == true) && (posBomba(lin+1, col-1) == true)){
+            cont++;
+        }
+        if ((posValida(lin-1, col+1) == true) && (posBomba(lin-1, col+1) == true)){
+            cont++;
+        }
+        campo[lin][col] = cont;
     }
+    return 0;
 }
 
 bool gameOver(int lin, int col){
