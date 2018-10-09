@@ -1,5 +1,5 @@
 //   Project     : [Campo Minado]
-//   File        : [campo_minado_earndt.cpp]
+//   File        : [minesweeper.cpp]
 //   Description :
 //      [TODO: Write the purpose of ... ]
 //
