@@ -8,7 +8,7 @@ Jogo Campo Minado para Faculdade. Linguagem C/C++.
 
 ## Authors
 
-* **Eduardo Arndt** - [eduardoarndt](https://github.com/eduardoarndt).
+**Eduardo Arndt** - [eduardoarndt](https://github.com/eduardoarndt).
 
 ## License
 
