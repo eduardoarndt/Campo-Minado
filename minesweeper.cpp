@@ -18,6 +18,7 @@ int lado;  //TAMANHO DO CAMPO
 int qt_minas;  //NUMERO DE MINAS
 
 char campo[maxLados][maxLados]; //tamanho maximo de 50x50
+bool revelados[maxLados][maxLados]; //matriz que guarda pos reveladas
 int  bombas[200][1]; //200 linhas, 2 colunas
 
 //FUNCOES
@@ -89,6 +90,7 @@ void criarCampo(){
     for (i=0; i<lado; i++){
         for (j=0; j<lado; j++){
             campo[i][j] = '-';
+            revelados[i][j] = false;
         }
     }
     return;
@@ -233,16 +235,33 @@ void jogar(){
             cont++;
         }
         campo[lin][col] = cont;
+        revelados[lin][col] = true;
 
         if (cont == '0'){
-            revelar(lin+1,col+1);
-            revelar(lin-1,col-1);
-            revelar(lin+1,col);
-            revelar(lin,col+1);
-            revelar(lin-1,col);
-            revelar(lin,col-1);
-            revelar(lin+1,col-1);
-            revelar(lin-1,col+1);
+            if revelados[lin+1][col+1] = false{
+                revelar(lin+1,col+1);
+            }
+            if revelados[lin+1][col+1] = false{
+                revelar(lin-1,col-1);
+            }
+            if revelados[lin+1][col+1] = false{
+                revelar(lin+1,col);
+            }
+            if revelados[lin+1][col+1] = false{
+                revelar(lin,col+1);
+            }
+            if revelados[lin+1][col+1] = false{
+                revelar(lin-1,col);
+            }
+            if revelados[lin+1][col+1] = false{
+                revelar(lin,col-1);
+            }
+            if revelados[lin+1][col+1] = false{
+                revelar(lin+1,col-1);
+            }
+            if revelados[lin+1][col+1] = false{
+                revelar(lin-1,col+1);
+            }
         }
     }
     return;
@@ -279,14 +298,30 @@ void revelar (int lin, int col){
     campo[lin][col] = cont;
 
     if (cont == '0'){
-        /* revelar(lin+1, col);
-        revelar(lin, col+1);
-        revelar(lin-1, col);
-        revelar(lin, col-1);
-        revelar(lin+1, col+1);
-        revelar(lin-1, col-1);
-        revelar(lin+1, col-1);
-        revelar(lin-1, col+1); */
+        if ((posValida(lin+1, col) == true) && (posBomba(lin+1, col) == false)){
+            revelar(lin+1, col);
+        }
+        if ((posValida(lin, col+1) == true) && (posBomba(lin, col+1) == false)){
+            revelar(lin, col+1);
+        }
+        if ((posValida(lin-1, col) == true) && (posBomba(lin-1, col) == false)){
+            revelar(lin-1, col);
+        }
+        if ((posValida(lin, col-1) == true) && (posBomba(lin, col-1) == false)){
+            revelar(lin, col-1);
+        }
+        if ((posValida(lin+1, col+1) == true) && (posBomba(lin+1, col+1) == false)){
+            revelar(lin+1, col+1);
+        }
+        if ((posValida(lin-1, col-1) == true) && (posBomba(lin-1, col-1) == false)){
+            revelar(lin-1, col-1);
+        }
+        if ((posValida(lin+1, col-1) == true) && (posBomba(lin+1, col-1) == false)){
+            revelar(lin+1, col-1);
+        }
+        if ((posValida(lin-1, col+1) == true) && (posBomba(lin-1, col+1) == false)){
+            revelar(lin-1, col+1);
+        }
     }
     return;
 }
