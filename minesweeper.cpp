@@ -269,13 +269,12 @@ void jogar(){
 
 void revelar (int lin, int col){
     char cont = '0';
-    int teste;
 
     if (revelados[lin][col] == true){
         return;
     }
 
-    if ((posValida(lin+1, col) == true) && (posBomba(lin+1, col) == true)){
+    /* if ((posValida(lin+1, col) == true) && (posBomba(lin+1, col) == true)){
         cont++;
     } 
     if ((posValida(lin, col+1) == true) && (posBomba(lin, col+1) == true)){
@@ -298,7 +297,8 @@ void revelar (int lin, int col){
     }
     if ((posValida(lin-1, col+1) == true) && (posBomba(lin-1, col+1) == true)){
         cont++;
-    }
+    } */
+
     campo[lin][col] = cont;
 
     if (cont == '0'){
