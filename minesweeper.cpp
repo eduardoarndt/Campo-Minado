@@ -103,7 +103,7 @@ void colocarBombas(){
     //Bombas[][] é uma matriz que contém as coordenadas de todas as bombas do campo;
     //São duas colunas, e quantidade de linhas = quantidade de bombas;
 
-    //Pode ser que não fique exatamente a quantidade de bombas definidade, pois pode cair na mesma posicao
+    //Pode ser que não fique exatamente a quantidade de bombas definidade, pois pode cair na mesma posicao mais de uma vez
 
     srand(time(NULL));
     for (i=0; i<qt_minas; i++){
@@ -270,6 +270,10 @@ void jogar(){
 void revelar (int lin, int col){
     char cont = '0';
     int teste;
+
+    if (revelados[lin][col] == true){
+        return;
+    }
 
     if ((posValida(lin+1, col) == true) && (posBomba(lin+1, col) == true)){
         cont++;
