@@ -238,28 +238,28 @@ void jogar(){
         revelados[lin][col] = true;
 
         if (cont == '0'){
-            if revelados[lin+1][col+1] = false{
+            if (revelados[lin+1][col+1] == false){
                 revelar(lin+1,col+1);
             }
-            if revelados[lin+1][col+1] = false{
+            if (revelados[lin+1][col+1] == false){
                 revelar(lin-1,col-1);
             }
-            if revelados[lin+1][col+1] = false{
+            if (revelados[lin+1][col+1] == false){
                 revelar(lin+1,col);
             }
-            if revelados[lin+1][col+1] = false{
+            if (revelados[lin+1][col+1] == false){
                 revelar(lin,col+1);
             }
-            if revelados[lin+1][col+1] = false{
+            if (revelados[lin+1][col+1] == false){
                 revelar(lin-1,col);
             }
-            if revelados[lin+1][col+1] = false{
+            if (revelados[lin+1][col+1] == false){
                 revelar(lin,col-1);
             }
-            if revelados[lin+1][col+1] = false{
+            if (revelados[lin+1][col+1] == false){
                 revelar(lin+1,col-1);
             }
-            if revelados[lin+1][col+1] = false{
+            if (revelados[lin+1][col+1] == false){
                 revelar(lin-1,col+1);
             }
         }
