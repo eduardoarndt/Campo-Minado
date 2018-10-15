@@ -274,6 +274,8 @@ void revelar (int lin, int col){
         return;
     }
 
+    //comentado para não crashar
+
     /* if ((posValida(lin+1, col) == true) && (posBomba(lin+1, col) == true)){
         cont++;
     } 
