@@ -100,10 +100,10 @@ void colocarBombas(){
     int i, j;
     int x, y;
 
-    //Bombas[][] √© uma matriz que cont√©m as coordenadas de todas as bombas do campo;
-    //S√£o duas colunas, e quantidade de linhas = quantidade de bombas;
+    //Bombas[][] È uma matriz que contÈm as coordenadas de todas as bombas do campo;
+    //S„o duas colunas, e quantidade de linhas = quantidade de bombas;
 
-    //Pode ser que n√£o fique exatamente a quantidade de bombas definidade, pois pode cair na mesma posicao mais de uma vez
+    //Pode ser que n„o fique exatamente a quantidade de bombas definidade, pois pode cair na mesma posicao mais de uma vez
 
     srand(time(NULL));
     for (i=0; i<qt_minas; i++){
@@ -238,28 +238,28 @@ void jogar(){
         revelados[lin][col] = true;
 
         if (cont == '0'){
-            if (revelados[lin+1][col+1] == false){
+            if ((posValida(lin+1,col+1) == true) && (posBomba(lin+1,col+1) == false)){
                 revelar(lin+1,col+1);
             }
-            if (revelados[lin+1][col+1] == false){
+            if ((posValida(lin-1,col-1) == true) && (posBomba(lin-1,col-1) == false)){
                 revelar(lin-1,col-1);
             }
-            if (revelados[lin+1][col+1] == false){
+            if ((posValida(lin+1,col) == true) && (posBomba(lin+1,col) == false)){
                 revelar(lin+1,col);
             }
-            if (revelados[lin+1][col+1] == false){
+            if ((posValida(lin,col+1) == true) && (posBomba(lin,col+1) == false)){
                 revelar(lin,col+1);
             }
-            if (revelados[lin+1][col+1] == false){
+            if ((posValida(lin-1,col) == true) && (posBomba(lin-1,col) == false)){
                 revelar(lin-1,col);
             }
-            if (revelados[lin+1][col+1] == false){
+            if ((posValida(lin,col-1) == true) && (posBomba(lin,col-1) == false)){
                 revelar(lin,col-1);
             }
-            if (revelados[lin+1][col+1] == false){
+            if ((posValida(lin+1,col-1) == true) && (posBomba(lin+1,col-1) == false)){
                 revelar(lin+1,col-1);
             }
-            if (revelados[lin+1][col+1] == false){
+            if ((posValida(lin-1,col+1) == true) && (posBomba(lin-1,col+1) == false)){
                 revelar(lin-1,col+1);
             }
         }
@@ -276,7 +276,7 @@ void revelar (int lin, int col){
 
     //comentado para n„o crashar
 
-    /* if ((posValida(lin+1, col) == true) && (posBomba(lin+1, col) == true)){
+    if ((posValida(lin+1, col) == true) && (posBomba(lin+1, col) == true)){
         cont++;
     } 
     if ((posValida(lin, col+1) == true) && (posBomba(lin, col+1) == true)){
@@ -299,7 +299,7 @@ void revelar (int lin, int col){
     }
     if ((posValida(lin-1, col+1) == true) && (posBomba(lin-1, col+1) == true)){
         cont++;
-    } */
+    }
 
     campo[lin][col] = cont;
 
