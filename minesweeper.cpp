@@ -1,6 +1,6 @@
 //   Project     : [Campo Minado]
 //   File        : [minesweeper.cpp]
-//   Encoding    : [ISO-8859-1]
+//   Encoding    : [UTF-8]
 //   Description : [Campo Minado]
 //   Created On  : [30/09/2018 2:24:07 PM]
 //   Created By  : [Eduardo Arndt]
